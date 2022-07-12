@@ -6,7 +6,7 @@ const Profile = () => {
     const history = useNavigate();
     const onLogOutClick = () => {
         authService.signOut();
-        history.push("/");
+        history("/");
     };
     return (
         <>
