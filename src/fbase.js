@@ -1,4 +1,6 @@
 import firebase from "firebase/app";
+//auth 기능 추가
+import "firebase/auth";
 
 const {
     REACT_APP_API_KEY,
@@ -18,4 +20,9 @@ const firebaseConfig = {
     appId: REACT_APP_APP_ID,
 };
 
-export default firebase.initializeApp(firebaseConfig);
+//firebase 초기 설정
+firebase.initializeApp(firebaseConfig);
+
+export const firebaseInstance = firebase;
+
+export const authService = firebase.auth();
