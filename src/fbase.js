@@ -3,6 +3,8 @@ import firebase from "firebase/app";
 import "firebase/auth";
 //db 기능추가, firestore는 NoSql이다
 import "firebase/firestore";
+//file bucket 기능추가
+import "firebase/storage";
 
 const {
     REACT_APP_API_KEY,
@@ -30,3 +32,4 @@ firebase.initializeApp(firebaseConfig);
 export const firebaseInstance = firebase;
 export const authService = firebase.auth();
 export const dbService = firebase.firestore();
+export const storageService = firebase.storage();
