@@ -9,15 +9,31 @@ function App() {
         //firebase의 유저 상태 변화를 알려줌
         authService.onAuthStateChanged((user) => {
             if (user) {
-                setUserObj(user);
+                setUserObj({
+                    displayName: user.displayName,
+                    uid: user.uid,
+                    updateProfile: (args) => user.updateProfile(args),
+                });
             }
             setInit(true);
         });
     }, []);
+    const refreshUser = () => {
+        const user = authService.currentUser;
+        setUserObj({
+            displayName: user.displayName,
+            uid: user.uid,
+            updateProfile: (args) => user.updateProfile(args),
+        });
+    };
     return (
         <>
             {init ? (
-                <AppRouter isLoggedIn={Boolean(userObj)} userObj={userObj} />
+                <AppRouter
+                    refreshUser={refreshUser}
+                    isLoggedIn={Boolean(userObj)}
+                    userObj={userObj}
+                />
             ) : (
                 "Initializing..."
             )}
